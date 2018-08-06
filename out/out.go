@@ -94,6 +94,27 @@ func Execute(sourceRoot, version string, input []byte) (string, error) {
 		return "", nil
 	}
 
+	body, err := fromTextOrFile(indata.Params.BodyText, indata.Params.Body)
+	if indata.Params.SendEmptyBody == false && (os.IsNotExist(err) || (err == nil && len(body) == 0)) {
+		fmt.Fprintf(os.Stderr, "Message not sent because the message body is empty and send_empty_body parameter was set to false. Github readme: https://github.com/Aptomi/concourse-email-resource")
+		var outdata Output
+		outdata.Version.Time = time.Now().UTC()
+		outdata.Metadata = []MetadataItem{
+			{Name: "smtp_host", Value: indata.Source.SMTP.Host},
+			{Name: "data", Value: "message not sent"},
+			{Name: "version", Value: version},
+		}
+		outbytes, err := json.Marshal(outdata)
+		if err != nil {
+			return "", err
+		}
+		return string(outbytes), nil
+	}
+
+	if err != nil {
+		return "", err
+	}
+
 	subject, err := fromTextOrFile(indata.Params.SubjectText, indata.Params.Subject)
 	if err != nil {
 		return "", err
@@ -108,11 +129,6 @@ func Execute(sourceRoot, version string, input []byte) (string, error) {
 			os.Exit(1)
 		}
 		headers = strings.Trim(headers, "\n")
-	}
-
-	body, err := fromTextOrFile(indata.Params.BodyText, indata.Params.Body)
-	if err != nil {
-		return "", err
 	}
 
 	if indata.Params.To != "" {
@@ -155,10 +171,6 @@ func Execute(sourceRoot, version string, input []byte) (string, error) {
 		return "", err
 	}
 
-	if indata.Params.SendEmptyBody == false && len(body) == 0 {
-		fmt.Fprintf(os.Stderr, "Message not sent because the message body is empty and send_empty_body parameter was set to false. Github readme: https://github.com/pivotal-cf/email-resource")
-		return string(outbytes), nil
-	}
 	var messageData []byte
 	messageData = append(messageData, []byte("To: "+strings.Join(indata.Source.To, ", ")+"\n")...)
 	messageData = append(messageData, []byte("From: "+indata.Source.From+"\n")...)
