@@ -7,7 +7,7 @@ export GOPATH=$PWD/go
 export PATH=$GOPATH/bin:$PATH
 OUTPUT_DIR=$PWD/compiled-output
 SOURCE_DIR=$PWD/source
-WORKING_DIR=$GOPATH/src/github.com/pivotal-cf/email-resource
+WORKING_DIR=$GOPATH/src/github.com/Aptomi/concourse-email-resource
 
 cp source/Dockerfile ${OUTPUT_DIR}/.
 cp /etc/ssl/certs/ca-certificates.crt ${OUTPUT_DIR}/ca-certificates.crt

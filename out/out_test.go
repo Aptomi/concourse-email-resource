@@ -10,10 +10,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Aptomi/concourse-email-resource/out"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	. "github.com/onsi/gomega/gexec"
-	"github.com/pivotal-cf/email-resource/out"
 )
 
 var _ = Describe("Out", func() {
@@ -29,7 +29,7 @@ var _ = Describe("Out", func() {
 		Expect(ioutil.WriteFile(absPath, []byte(contents), 0600)).To(Succeed())
 	}
 	It("should compile", func() {
-		_, err := Build("github.com/pivotal-cf/email-resource/out/cmd")
+		_, err := Build("github.com/Aptomi/concourse-email-resource/out/cmd")
 		Ω(err).ShouldNot(HaveOccurred())
 	})
 	BeforeEach(func() {
@@ -516,7 +516,7 @@ Header-3: value-3
 			inputdata = string(inputBytes)
 			output, err := out.Execute(sourceRoot, "", []byte(inputdata))
 			Expect(err).To(HaveOccurred())
-			Expect(err.Error()).To(Equal(fmt.Sprintf("dial tcp %s:%s: getsockopt: connection refused", inputs.Source.SMTP.Host, inputs.Source.SMTP.Port)))
+			Expect(err.Error()).To(Equal(fmt.Sprintf("dial tcp %s:%s: connect: connection refused", inputs.Source.SMTP.Host, inputs.Source.SMTP.Port)))
 			Expect(output).Should(BeEmpty())
 		})
 	})

@@ -1,4 +1,4 @@
-package: github.com/pivotal-cf/email-resource
+package: github.com/Aptomi/concourse-email-resource
 import:
 testImport:
 - package: github.com/onsi/ginkgo

@@ -1,10 +1,10 @@
 package check_test
 
 import (
+	"github.com/Aptomi/concourse-email-resource/check"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	. "github.com/onsi/gomega/gexec"
-	"github.com/pivotal-cf/email-resource/check"
 )
 
 var _ = Describe("Check", func() {
@@ -13,7 +13,7 @@ var _ = Describe("Check", func() {
 	})
 
 	It("should compile", func() {
-		_, err := Build("github.com/pivotal-cf/email-resource/check/cmd")
+		_, err := Build("github.com/Aptomi/concourse-email-resource/check/cmd")
 		Ω(err).ShouldNot(HaveOccurred())
 	})
 

@@ -18,7 +18,7 @@ cd ${SOURCE_DIR}
 DRAFT_VERSION=`versioning bump_patch`-`git rev-parse HEAD`
 echo "next version should be: ${DRAFT_VERSION}"
 
-WORKING_DIR=$GOPATH/src/github.com/pivotal-cf/email-resource
+WORKING_DIR=$GOPATH/src/github.com/Aptomi/concourse-email-resource
 mkdir -p ${WORKING_DIR}
 cp -R ${SOURCE_DIR}/* ${WORKING_DIR}/.
 cd ${WORKING_DIR}

@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/pivotal-cf/email-resource/out"
+	"github.com/Aptomi/concourse-email-resource/out"
 )
 
 var (

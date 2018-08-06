@@ -2,7 +2,7 @@ resources:
 - name: source
   type: git
   source:
-    uri: git@github.com:pivotal-cf/email-resource.git
+    uri: git@github.com:Aptomi/concourse-email-resource.git
     branch: {{dev-build-branch}}
     private_key: {{git-ssh-key}}
 

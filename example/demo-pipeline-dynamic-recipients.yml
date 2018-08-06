@@ -9,7 +9,7 @@ resources:
   - name: email-resource-source
     type: git
     source:
-      uri: https://github.com/pivotal-cf/email-resource
+      uri: https://github.com/Aptomi/concourse-email-resource
       branch: master
   - name: send-an-email
     type: email

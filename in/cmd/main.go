@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/pivotal-cf/email-resource/in"
+	"github.com/Aptomi/concourse-email-resource/in"
 )
 
 func main() {

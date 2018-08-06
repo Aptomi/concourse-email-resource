@@ -1,10 +1,10 @@
 package in_test
 
 import (
+	"github.com/Aptomi/concourse-email-resource/in"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	. "github.com/onsi/gomega/gexec"
-	"github.com/pivotal-cf/email-resource/in"
 )
 
 var _ = Describe("In", func() {
@@ -13,7 +13,7 @@ var _ = Describe("In", func() {
 	})
 
 	It("should compile", func() {
-		_, err := Build("github.com/pivotal-cf/email-resource/in/cmd")
+		_, err := Build("github.com/Aptomi/concourse-email-resource/in/cmd")
 		Ω(err).ShouldNot(HaveOccurred())
 	})
 
